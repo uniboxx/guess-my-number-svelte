@@ -10,7 +10,8 @@
     guessNumber,
     msg,
     score,
-    highscore;
+    highscore,
+    win = false;
 
   //^ RESET FUNCTION
 
@@ -18,7 +19,7 @@
     localStorage.highscore = localStorage.highscore || 0;
     highscore = localStorage.highscore;
     window.document.body.style.backgroundColor = '#222';
-    secretNumberElement.style.width = '15rem';
+    win = false;
     secretNumberText = '?';
     secretNumber = Math.ceil(Math.random() * 20);
     guessNumber = ``;
@@ -36,7 +37,7 @@
     if (guessNumber > secretNumber) msg = '📈 Too high';
     if (guessNumber === secretNumber) {
       window.document.body.style.backgroundColor = '#60b347';
-      secretNumberElement.style.width = '30rem';
+      win = true;
       secretNumberText = secretNumber;
       msg = '🎉 Correct Number';
       if (score > highscore) highscore = localStorage.highscore = score;
@@ -50,7 +51,9 @@
     <p class="between">(Between 1 and 20)</p>
   </section>
   <h1>Guess My Number!</h1>
-  <div bind:this={secretNumberElement} class="number">{secretNumberText}</div>
+  <div bind:this={secretNumberElement} class="number" class:win>
+    {secretNumberText}
+  </div>
 </header>
 <main>
   <section class="left">
@@ -85,13 +88,6 @@
     gap 1rem
     height 33vh
     border-bottom 7px solid #eee
-    @media screen and (min-width 640px)
-      display block
-      position relative
-    .top
-      width 100%
-      @media screen and (min-width 640px)
-        display flex
         
     .between
       font-size 1.4rem
@@ -117,25 +113,31 @@
       background #eee
       color #333
       font-size 3rem
-      width 15rem
       padding 1rem 0rem
       text-align center
       border-radius 5px
-
+      transform translateY(50%)
+      transition all 1s ease
       @media screen and (min-width 640px)
-        position absolute
-        bottom 0
-        left 50%
-        transform translate(-50%, 50%) 
+        padding 2rem 0
         font-size 6rem
-
+      &:not(.win)
+        width 6rem
+        @media screen and (min-width 640px)
+          width 15rem
+      &.win
+        width 100%
+        padding 2rem 0
+        z-index 1
+        
+      
   main
     height 67vh
     color #eee
     display flex
     flex-direction column
     align-items center
-    justify-content end
+    justify-content center
     gap 2rem
     @media screen and (min-width 640px)
       flex-direction row
@@ -163,7 +165,7 @@
     color inherit
     font-size 2.5rem
     padding 1rem
-    width 35%
+    width 11rem
     text-align center
     
     @media screen and (min-width 640px)
