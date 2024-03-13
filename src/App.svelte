@@ -187,9 +187,8 @@
     width 100%
     padding 0 5rem
     font-size 1.5rem
-    
-
-      
+    @media screen and (min-width 640px)
+      font-size 2rem
     
 
 </style>
