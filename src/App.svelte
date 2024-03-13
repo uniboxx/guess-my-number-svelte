@@ -114,7 +114,6 @@
         
     
     .number
-      position relative
       background #eee
       color #333
       font-size 3rem
@@ -122,7 +121,7 @@
       padding 1rem 0rem
       text-align center
       border-radius 5px
-      transform translatey(50%)
+
       @media screen and (min-width 640px)
         position absolute
         bottom 0
@@ -136,7 +135,7 @@
     display flex
     flex-direction column
     align-items center
-    justify-content center
+    justify-content end
     gap 2rem
     @media screen and (min-width 640px)
       flex-direction row
@@ -187,6 +186,7 @@
     margin-bottom 2rem
     width 100%
     padding 0 5rem
+    font-size 1.5rem
     
 
       
