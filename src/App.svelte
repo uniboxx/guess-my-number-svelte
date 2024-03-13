@@ -24,7 +24,6 @@
     guessNumber = ``;
     msg = 'Start guessing...';
     score = 20;
-    console.log(secretNumber);
   }
 
   //^ check button
