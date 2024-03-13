@@ -83,7 +83,7 @@
     flex-direction column
     align-items center
     gap 1rem
-    height 35vh
+    height 33vh
     border-bottom 7px solid #eee
     @media screen and (min-width 640px)
       display block
@@ -103,11 +103,11 @@
         top 2rem
         right 2rem
     h1
-      font-size 2.5rem
+      font-size 1.9rem
       text-align center
       width 100%
-      min-height 4rem
-      padding 2rem
+      min-height 5rem
+      padding 2rem 0
       @media screen and (min-width 640px)
         font-size 4rem
         margin 8rem 0 0 0
@@ -131,7 +131,7 @@
         font-size 6rem
 
   main
-    height 65vh
+    height 67vh
     color #eee
     display flex
     flex-direction column
