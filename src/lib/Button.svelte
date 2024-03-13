@@ -24,7 +24,6 @@
     width 40%
     @media screen and (min-width 640px)
       width auto
-      margin 0 auto
       padding 2rem 3rem
       font-size 2rem
       
@@ -33,12 +32,9 @@
     
   .again
     width 100%
-    max-width auto
     @media screen and (min-width 640px) 
-      position absolute
       width auto
-      top 2rem
-      left 2rem
+      
   .check
     width 11rem
     @media screen and (min-width 640px)

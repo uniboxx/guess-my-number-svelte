@@ -84,32 +84,39 @@
   header
     display flex
     flex-direction column
-    align-items center
+    // align-items center
     gap 1rem
-    height 33vh
+    height 35vh
     border-bottom 7px solid #eee
+    .top
+      display flex
+      flex-direction column
+      justify-content start
+      @media screen and (min-width 640px)
+        margin 2rem
+        flex-direction row
+        justify-content space-between
+      
         
     .between
       font-size 1.4rem
       text-align center
       margin-top .5rem
       @media screen and (min-width 640px)
-        position absolute
         width auto
-        top 2rem
-        right 2rem
+
     h1
       font-size 1.9rem
       text-align center
-      width 100%
       min-height 5rem
       padding 2rem 0
       @media screen and (min-width 640px)
         font-size 4rem
-        margin 8rem 0 0 0
+        margin 1rem
         
     
     .number
+      align-self center
       background #eee
       color #333
       font-size 3rem
@@ -132,12 +139,12 @@
         
       
   main
-    height 67vh
+    height 65vh
     color #eee
     display flex
     flex-direction column
     align-items center
-    justify-content center
+    justify-content space-evenly
     gap 2rem
     @media screen and (min-width 640px)
       flex-direction row
