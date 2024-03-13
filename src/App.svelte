@@ -2,95 +2,54 @@
   import { onMount } from 'svelte';
   import Button from './lib/Button.svelte';
 
-  localStorage.highscore = localStorage.highscore || 0;
-  const secretNumberCover = '?';
-  let secretNumber, guessNumber, msg, score;
+  onMount(resetGame);
+
+  let secretNumber,
+    secretNumberText,
+    secretNumberElement,
+    guessNumber,
+    msg,
+    score,
+    highscore;
+
+  //^ RESET FUNCTION
+
+  function resetGame(event) {
+    localStorage.highscore = localStorage.highscore || 0;
+    highscore = localStorage.highscore;
+    window.document.body.style.backgroundColor = '#222';
+    secretNumberElement.style.width = '15rem';
+    secretNumberText = '?';
+    secretNumber = Math.ceil(Math.random() * 20);
+    guessNumber = ``;
+    msg = 'Start guessing...';
+    score = 20;
+    console.log(secretNumber);
+  }
 
   //^ check button
 
-  function decrementScore(event) {
-    if (!guessNumber) return;
+  function checkNumber(event) {
+    if (!guessNumber) return (msg = '⛔️ No number!');
     if (guessNumber !== secretNumber && score > 0) score--;
     if (score === 0) return (msg = `💥 You lost the game!`);
     if (guessNumber < secretNumber) msg = '📉 Too low';
     if (guessNumber > secretNumber) msg = '📈 Too high';
     if (guessNumber === secretNumber) {
       window.document.body.style.backgroundColor = '#60b347';
+      secretNumberElement.style.width = '30rem';
+      secretNumberText = secretNumber;
       msg = '🎉 Correct Number';
+      if (score > highscore) highscore = localStorage.highscore = score;
     }
-    if (score > localStorage.highscore) localStorage.highscore = score;
   }
-
-  //^ RESET FUNCTION
-
-  function resetGame(event) {
-    score = 4;
-    msg = 'Start guessing...';
-    secretNumber = Math.ceil(Math.random() * 20);
-    window.document.body.style.backgroundColor = '#222';
-    // secretNumberEl.style.width = '15rem';
-    guessNumber = ``;
-    console.log(secretNumber);
-  }
-
-  resetGame();
-
-  // function resetGame() {
-  //   body.style.backgroundColor = '#222';
-  //   secretNumberEl.textContent = '?';
-  //   guessInput.value = '';
-  //   messageEl.textContent = 'Start guessing...';
-  //   score = 3;
-  //   highscoreEl.textContent = localStorage.highscore;
-  // }
-
-  //^ RESET THE GAME AT LOADING PAGE
-
-  // resetGame();
-
-  //^ RESET THE GAME CLICKING THE AGAIN BUTTON
-  // againBtn.addEventListener('click', resetGame);
-
-  //^ FIX FOR FIREFOX BUG ON CLICKING NO NUMBER KEYS
-  // guessInput.addEventListener('keyup', e => {
-  //   if (isNaN(e.key)) {
-  //     e.target.value = '';
-  //   }
-  // });
-
-  // checkBtn.addEventListener('click', e => {
-  //   const guess = +document.querySelector(`.guess`).value;
-  //   if (!guess) return (messageEl.textContent = `⛔️ No Number!`);
-
-  //   if (guess < 1 || guess > 20)
-  //     return (messageEl.textContent = `⛔️ Not in the range!`);
-
-  //   let resultMsg;
-
-  //   if (guess === secretNumber) {
-  //     secretNumberEl.textContent = secretNumber;
-  //     secretNumberEl.style.width = '30rem';
-  //     body.style.backgroundColor = '#60b347';
-  //     if (score > localStorage.highscore) localStorage.highscore = score;
-  //     highscoreEl.textContent = localStorage.highscore;
-  //     resultMsg = '🎉 Correct Number';
-  //   } else {
-  //     resultMsg = guess < secretNumber ? '📉 Too low' : '📈 Too high';
-  //     if (score === 0) resultMsg = `💥 You lost the game!`;
-  //   }
-  //   messageEl.textContent = resultMsg;
-  // });
 </script>
 
 <header>
   <Button type="" class="again" label={'Again!'} on:click={resetGame} />
   <p class="between">(Between 1 and 20)</p>
   <h1>Guess My Number!</h1>
-  {#if secretNumber === guessNumber}
-    <div class="number">{secretNumber}</div>
-  {:else}
-    <div class="number">{secretNumberCover}</div>
-  {/if}
+  <div bind:this={secretNumberElement} class="number">{secretNumberText}</div>
 </header>
 <main>
   <section class="left">
@@ -105,14 +64,14 @@
       type={'number'}
       class={'check'}
       label={'Check!'}
-      on:click={decrementScore}
+      on:click={checkNumber}
     />
   </section>
   <section class="right">
     <p class="message">{msg}</p>
     <p class="label-score">💯 Score: <span class="score">{score}</span></p>
     <p class="label-highscore">
-      🥇 Highscore: <span class="highscore">{localStorage.highscore}</span>
+      🥇 Highscore: <span class="highscore">{highscore}</span>
     </p>
   </section>
 </main>
@@ -122,10 +81,6 @@
     position relative
     height 35vh
     border-bottom 7px solid #eee
-    .again
-      position absolute
-      top 2rem
-      left 2rem
 
   main
     height 65vh
