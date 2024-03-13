@@ -77,56 +77,78 @@
 
 <style lang="stylus">
   header
-    position relative
+    display flex
+    flex-direction column
+    align-items center
     height 35vh
     border-bottom 7px solid #eee
-
+    @media screen and (min-width 640px)
+      display block
+      position relative
+    .between
+      font-size 1.4rem
+      width 100%
+      text-align center
+      margin 1rem 0
+      @media screen and (min-width 640px)
+        position absolute
+        width auto
+        top 2rem
+        right 2rem
+    h1
+      font-size 4rem
+      text-align center
+      width 100%
+      margin 3rem 0
+      
+      @media screen and (min-width 640px)
+        position absolute
+        margin 0
+        transform translate(-50%, -50%)
+        top 52%
+        left 50%        
+    .number
+      position relative
+      background #eee
+      color #333
+      font-size 6rem
+      width 15rem
+      padding 2rem 0rem
+      text-align center
+      border-radius 5px
+      @media screen and (min-width 640px)
+        position absolute
+        bottom 0
+        left 50%
+        transform translate(-50%, 50%)
+        padding 3rem 0  
   main
     height 65vh
     color #eee
     display flex
-    align-items center
-    justify-content space-around
-
-  .left
-    width 52rem
-    display flex
     flex-direction column
     align-items center
-
-  .right
-    width 52rem
-    font-size 2rem
-
-  h1
-    font-size 4rem
-    text-align center
-    position absolute
+    justify-content center
+    gap 2rem
+    @media screen and (min-width 640px)
+      flex-direction row
+  .left,.right
     width 100%
-    top 52%
-    left 50%
-    transform translate(-50%, -50%)
+    display flex
+    flex-direction column      
 
-  .number
-    background #eee
-    color #333
-    font-size 6rem
-    width 15rem
-    padding 3rem 0rem
-    text-align center
-    position absolute
-    bottom 0
-    left 50%
-    transform translate(-50%, 50%)
+  .left
+    flex-direction row
+    justify-content space-around
+    align-items center
+    @media screen and (min-width 640px)
+      justify-content center
+      flex-direction column
+  .right
+    align-items center
+    justify-content center
 
-  .between
-    font-size 1.4rem
-    position absolute
-    top 2rem
-    right 2rem
-
-  
-
+      
   .guess
     background none
     border 4px solid #eee
@@ -138,6 +160,12 @@
     text-align center
     display block
     margin-bottom 3rem
+
+  .right
+    font-size 2rem 
+
+  
+
 
   .message
     margin-bottom 8rem

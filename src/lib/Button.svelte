@@ -19,12 +19,20 @@
     font-family inherit
     padding 2rem 3rem
     cursor pointer
+    border-radius 5px
+    @media screen and (min-width 640px)
+
+      margin 0 auto
+
+      
     &:hover 
       background-color #ccc
     
-    &.again
+  .again
+    width 100%
+    @media screen and (min-width 640px) 
       position absolute
+      width auto
       top 2rem
       left 2rem
-
 </style>
