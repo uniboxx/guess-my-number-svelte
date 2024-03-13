@@ -45,8 +45,10 @@
 </script>
 
 <header>
-  <Button type="" class="again" label={'Again!'} on:click={resetGame} />
-  <p class="between">(Between 1 and 20)</p>
+  <section class="top">
+    <Button type="" class="again" label={'Again!'} on:click={resetGame} />
+    <p class="between">(Between 1 and 20)</p>
+  </section>
   <h1>Guess My Number!</h1>
   <div bind:this={secretNumberElement} class="number">{secretNumberText}</div>
 </header>
@@ -80,48 +82,54 @@
     display flex
     flex-direction column
     align-items center
+    gap 1rem
     height 35vh
     border-bottom 7px solid #eee
     @media screen and (min-width 640px)
       display block
       position relative
+    .top
+      width 100%
+      @media screen and (min-width 640px)
+        display flex
+        
     .between
       font-size 1.4rem
-      width 100%
       text-align center
-      margin 1rem 0
+      margin-top .5rem
       @media screen and (min-width 640px)
         position absolute
         width auto
         top 2rem
         right 2rem
     h1
-      font-size 4rem
+      font-size 2.5rem
       text-align center
       width 100%
-      margin 3rem 0
-      
+      min-height 4rem
+      padding 2rem
       @media screen and (min-width 640px)
-        position absolute
-        margin 0
-        transform translate(-50%, -50%)
-        top 52%
-        left 50%        
+        font-size 4rem
+        margin 8rem 0 0 0
+        
+    
     .number
       position relative
       background #eee
       color #333
-      font-size 6rem
+      font-size 3rem
       width 15rem
-      padding 2rem 0rem
+      padding 1rem 0rem
       text-align center
       border-radius 5px
+      transform translatey(50%)
       @media screen and (min-width 640px)
         position absolute
         bottom 0
         left 50%
-        transform translate(-50%, 50%)
-        padding 3rem 0  
+        transform translate(-50%, 50%) 
+        font-size 6rem
+
   main
     height 65vh
     color #eee
@@ -134,9 +142,8 @@
       flex-direction row
   .left,.right
     width 100%
-    display flex
-    flex-direction column      
-
+    display flex     
+    
   .left
     flex-direction row
     justify-content space-around
@@ -145,32 +152,44 @@
       justify-content center
       flex-direction column
   .right
+    flex-direction column
     align-items center
     justify-content center
-
-      
+    font-size 2rem
+   
   .guess
     background none
     border 4px solid #eee
     font-family inherit
     color inherit
-    font-size 5rem
-    padding 2.5rem
-    width 25rem
+    font-size 2.5rem
+    padding 1rem
+    width 35%
     text-align center
-    display block
-    margin-bottom 3rem
-
-  .right
-    font-size 2rem 
-
-  
-
+    
+    @media screen and (min-width 640px)
+      width 25rem
+      font-size 6rem
+      margin-bottom 3rem
+      padding 2.5rem
 
   .message
-    margin-bottom 8rem
-    height 3rem
+    margin-bottom 6rem
+    height 2rem
+    width 100%
+    padding 0 5rem
+    font-size 2rem
+    @media screen and (min-width 640px)
+      margin-bottom 8rem
 
-  .label-score
+  
+  .label-score, .label-highscore
     margin-bottom 2rem
+    width 100%
+    padding 0 5rem
+    
+
+      
+    
+
 </style>
