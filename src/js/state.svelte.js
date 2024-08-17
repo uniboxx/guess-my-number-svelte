@@ -16,22 +16,23 @@ function createState() {
     state.win = false;
     state.secretNumberText = '?';
     state.secretNumber = Math.ceil(Math.random() * 20);
-    state.guessNumber = ``;
+    state.guessNumber = '';
     state.msg = 'Start guessing...';
     state.score = 20;
-    console.log('resetted');
     document.body.style.backgroundColor = '#222';
   }
 
   function checkNumber(e) {
     e.preventDefault();
-    if (!state.guessNumber) return (state.msg = '⛔️ No number!');
-    if (state.guessNumber !== state.secretNumber && state.score > 0)
+    if (+state.guessNumber < 1 || +state.guessNumber > 20)
+      return (state.msg = '⛔️ No valid number');
+    if (!+state.guessNumber) return (state.msg = '⛔️ No number!');
+    if (+state.guessNumber !== state.secretNumber && state.score > 0)
       state.score--;
     if (state.score === 0) return (state.msg = `💥 You lost the game!`);
-    if (state.guessNumber < state.secretNumber) state.msg = '📉 Too low';
-    if (state.guessNumber > state.secretNumber) state.msg = '📈 Too high';
-    if (state.guessNumber === state.secretNumber) {
+    if (+state.guessNumber < state.secretNumber) state.msg = '📉 Too low';
+    if (+state.guessNumber > state.secretNumber) state.msg = '📈 Too high';
+    if (+state.guessNumber === state.secretNumber) {
       window.document.body.style.backgroundColor = '#60b347';
       state.win = true;
       state.secretNumberText = state.secretNumber;

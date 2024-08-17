@@ -40,7 +40,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    gap: 2rem;
+
     @media screen and (min-width: 640px) {
       flex-direction: row;
     }
@@ -54,6 +54,8 @@
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+      gap: 4rem;
+      padding: 0 1rem;
       @media screen and (min-width: 640px) {
         justify-content: center;
         flex-direction: column;
@@ -66,15 +68,19 @@
       font-size: 2rem;
     }
 
+    .left > * {
+      display: inline-block;
+      flex: 1;
+      text-align: center;
+    }
+
     .guess {
       background: none;
       border: 4px solid #eee;
       font-family: inherit;
       color: inherit;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       padding: 1rem;
-      width: 11rem;
-      text-align: center;
 
       @media screen and (min-width: 640px) {
         width: 25rem;

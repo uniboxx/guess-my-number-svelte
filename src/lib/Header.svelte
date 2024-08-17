@@ -33,12 +33,16 @@
         margin: 2rem;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
       }
     }
     .between {
       font-size: 1.4rem;
       text-align: center;
-      margin-top: 0.5rem;
+      margin-top: 5rem;
+      @media screen and (min-width: 640px) {
+        margin-top: 0rem;
+      }
     }
     h1 {
       font-size: 1.9rem;
