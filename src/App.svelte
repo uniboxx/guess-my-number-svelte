@@ -1,58 +1,40 @@
 <script>
   import Button from './lib/Button.svelte';
   import Header from './lib/Header.svelte';
-  import { state } from './js/state.svelte';
-
-  //^ check button
-
-  // function checkNumber(event) {
-  //   if (!guessNumber) return (msg = '⛔️ No number!');
-  //   if (guessNumber !== secretNumber && score > 0) score--;
-  //   if (score === 0) return (msg = `💥 You lost the game!`);
-  //   if (guessNumber < secretNumber) msg = '📉 Too low';
-  //   if (guessNumber > secretNumber) msg = '📈 Too high';
-  //   if (guessNumber === secretNumber) {
-  //     window.document.body.style.backgroundColor = '#60b347';
-  //     win = true;
-  //     secretNumberText = secretNumber;
-  //     msg = '🎉 Correct Number';
-  //     if (score > highscore) highscore = localStorage.highscore = score;
-  //   }
-  // }
+  import { gstate, checkNumber } from './js/state.svelte';
+  gstate.win;
 </script>
-
-<svelte:body style={`${isNew ? 'background-color:#222' : ''}`} />
 
 <Header />
 
-<!-- <main>
-  <section class="left">
+<main>
+  <form class="left">
     <input
       type="number"
       class="guess"
       min="1"
       max="20"
-      bind:value={guessNumber}
-    />
+      bind:value={gstate.guessNumber} />
     <Button
       type={'number'}
       class={'check'}
       label={'Check!'}
-      on:click={checkNumber}
-    />
-  </section>
+      onclick={checkNumber} />
+  </form>
   <section class="right">
-    <p class="message">{msg}</p>
-    <p class="label-score">💯 Score: <span class="score">{score}</span></p>
+    <p class="message">{gstate.msg}</p>
+    <p class="label-score">
+      💯 Score: <span class="score">{gstate.score}</span>
+    </p>
     <p class="label-highscore">
-      🥇 Highscore: <span class="highscore">{highscore}</span>
+      🥇 Highscore: <span class="highscore">{gstate.highscore}</span>
     </p>
   </section>
-</main> -->
+</main>
 
 <style lang="scss">
   main {
-    height: 65vh;
+    height: 65svh;
     color: #eee;
     display: flex;
     flex-direction: column;

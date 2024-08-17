@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 
 * {
   margin: 0;
@@ -13,11 +13,12 @@ html {
 }
 
 body {
-  font-family: 'Press Start 2P', sans-serif;
+  font-family: "Press Start 2P", sans-serif;
   min-height: 100svh;
   color: #eee;
   background-color: #222;
   /* background-color: #60b347; */
+  overflow: hidden;
 }
 @media screen and (min-width: 1024px) {
   body {

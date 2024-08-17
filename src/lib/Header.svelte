@@ -1,23 +1,20 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { state } from '../js/state.svelte';
+  import { gstate, resetGame } from '../js/state.svelte';
   import Button from './Button.svelte';
-  import { resetGame } from '../js/helpers';
 
-  onMount(() => resetGame(state));
-  let win,
-    secretNumberElement,
-    secretNumberText = false;
+  onMount(resetGame);
+  // let secretNumberElement = $state();
 </script>
 
 <header>
   <section class="top">
-    <Button type="" class="again" label={'Again!'} on:click={resetGame} />
+    <Button type="" classProp="again" label={'Again!'} onclick={resetGame} />
     <p class="between">(Between 1 and 20)</p>
   </section>
   <h1>Guess My Number!</h1>
-  <div bind:this={secretNumberElement} class="number" class:win>
-    {secretNumberText}
+  <div class={`number ${gstate.win ? 'win' : ''}`}>
+    {gstate.secretNumberText}
   </div>
 </header>
 
@@ -26,7 +23,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 35vh;
+    height: 35svh;
     border-bottom: 7px solid #eee;
     .top {
       display: flex;
